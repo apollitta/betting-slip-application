@@ -1,0 +1,40 @@
+<ui-view>
+    <!-- Form for user to make a bet for a specific event -->
+    <div id="betslip" class="betting-container" ng-show="selectedBets.length > 0">
+        <form ng-submit="placeBets(selectedBets)">
+            <h3>Betting slip</h3>
+            <br>
+            <div ng-repeat="bet in selectedBets" class="individual-bet-border">
+                <br>
+                <div class="row">
+                    <p ng-bind="bet.event + ' - ' + bet.name"></p>
+                </div>
+                <br>
+                <div class="row" style="">
+                    <div class="col-sm-12 col-xs-12">
+                        <span>&pound;</span>
+                        <input class="bet-input-button" type="number" min=1 ng-model="bet.stake"></input>
+                        <span ng-bind="'@ ' + getOdds(bet) + ' could return:'"></span>
+                        <br>
+                        <p style="display: inline-block"><b>&pound;{{getPossibleReturnForBet(bet)}}</b></p>
+                    </div>
+                </div>
+                <br>
+                <button class="btn btn-danger" ng-click="removeBetFromSelectedBets(bet)">Remove</button>
+                <br>
+                <br>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-sm-6">
+                    <a ui-sref="availableBets">
+                        <button class="btn btn-primary">Add another event</button>
+                    </a>
+                </div>
+                <div class="col-sm-6">
+                    <button type="submit" class="btn btn-primary">Place bet</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</ui-view>

@@ -1,0 +1,35 @@
+<ui-view>
+    <div class="container" ng-show="availableBetsErrorMessage == null">
+        <!-- Lists all available bets -->
+        <div id="available-bets" class="betting-container">
+            <h3>Available Bets</h3>
+            <br>
+            <br>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-condensed">
+                    <tbody>
+                        <tr ng-repeat="bet in availableBets">
+                            <td class="info">
+                                <p ng-bind="bet.event"></p>
+                            </td>
+                            <td class="info">
+                                <p ng-bind="bet.name"></p>
+                            </td>
+                            <td class="info">
+                                <a ui-sref="bettingSlip" ng-click="addBetToSelectedBets(bet)">
+                                    <button class="btn btn-primary full-width" ng-bind="getOdds(bet)"></button>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <br>
+            <br>
+        </div>
+    </div>
+    <div ng-show="availableBetsErrorMessage != null">
+        <h3>Unable to get available bets</h3>
+        <h3 ng-bind="availableBetsErrorMessage"></h3>
+    </div>
+</ui-view>
